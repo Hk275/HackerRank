@@ -6,27 +6,42 @@ string ltrim(const string &);
 string rtrim(const string &);
 
 /*
- * Complete the 'staircase' function below.
+ * Complete the 'pageCount' function below.
  *
- * The function accepts INTEGER n as parameter.
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER p
  */
 
-void staircase(int n) {
-    // take n -1 
-    // print " " and add "#" endl 
+int pageCount(int n, int p) {
     
-   for (int i = 1; i <= n; i++) {
-        cout << string(n - i, ' ') << string(i, '#') << endl;
-    }
+    // n = numb of pages 
+    // p = turn to page 
+    int fromFront = p / 2;
+    int fromBack = (n / 2) - p/2 ;
+    return min(fromFront, fromBack);
 }
+
 int main()
 {
+    ofstream fout(getenv("OUTPUT_PATH"));
+
     string n_temp;
     getline(cin, n_temp);
 
     int n = stoi(ltrim(rtrim(n_temp)));
 
-    staircase(n);
+    string p_temp;
+    getline(cin, p_temp);
+
+    int p = stoi(ltrim(rtrim(p_temp)));
+
+    int result = pageCount(n, p);
+
+    fout << result << "\n";
+
+    fout.close();
 
     return 0;
 }
@@ -52,4 +67,3 @@ string rtrim(const string &str) {
 
     return s;
 }
-w
